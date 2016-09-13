@@ -6,7 +6,7 @@ COPY mirrorlist /etc/pacman.d/
 RUN pacman --noconfirm -Sy archlinux-keyring
 RUN pacman --noconfirm -Syu
 RUN pacman-db-upgrade
-RUN pacman --noconfirm -S binutils libcap-ng gcc automake libtool autoconf make fakeroot
+RUN pacman --noconfirm -S binutils libcap-ng gcc clang automake libtool autoconf make fakeroot
 RUN pacman --noconfirm -S ca-certificates-mozilla
 RUN useradd pol
 RUN mkdir /home/pol; chown pol /home/pol -R
