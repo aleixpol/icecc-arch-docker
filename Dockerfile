@@ -7,7 +7,7 @@ RUN pacman --noconfirm -Sy archlinux-keyring
 RUN pacman --noconfirm -Syu
 RUN pacman-db-upgrade
 RUN pacman --noconfirm -S binutils libcap-ng gcc clang automake libtool autoconf make fakeroot
-RUN pacman --noconfirm -S ca-certificates-mozilla
+RUN pacman --noconfirm -S ca-certificates-mozilla grep lzo base-devel
 RUN useradd pol
 RUN mkdir /home/pol; chown pol /home/pol -R
 USER pol
