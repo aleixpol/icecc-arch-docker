@@ -19,4 +19,4 @@ CMD ["-v"]
 EXPOSE 10245 8765/TCP 8765/UDP 8766
 
 # docker build --pull . -t arch-icecc
-# docker run -ti --net=host -p ::10245/tcp -p ::8765/tcp -p ::8766/tcp -p ::8765/udp arch-icecc
+# docker run --rm -ti --net=host -p ::10245/tcp -p ::8765/tcp -p ::8766/tcp -p ::8765/udp arch-icecc
