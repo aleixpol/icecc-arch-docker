@@ -2,11 +2,11 @@ FROM base/archlinux
 LABEL Description="Archlinux icecream"
 MAINTAINER Aleix Pol Gonzalez <aleixpol@kde.org>
 
-COPY mirrorlist /etc/pacman.d/
-RUN pacman --noconfirm -Syu binutils libcap-ng gcc clang automake libtool autoconf make fakeroot grep lzo base-devel
+# COPY mirrorlist /etc/pacman.d/
+RUN pacman --noconfirm -Syu binutils gcc clang automake libtool grep lzo base-devel
 RUN useradd pol; mkdir /home/pol; chown pol /home/pol -R
 USER pol
-RUN mkdir -p ~/pkg && cd ~/pkg && curl https://aur.archlinux.org/cgit/aur.git/snapshot/icecream.tar.gz > icecream.tar.gz && tar xvf icecream.tar.gz && cd icecream && makepkg
+RUN mkdir -p ~/pkg && cd ~/pkg && curl https://aur.archlinux.org/cgit/aur.git/snapshot/icecream.tar.gz > icecream.tar.gz && tar xvf icecream.tar.gz && cd icecream && makepkg -s
 USER root
 RUN pacman --noconfirm -U /home/pol/pkg/icecream/icecream-*.pkg.tar.xz
 
