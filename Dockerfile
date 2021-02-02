@@ -1,14 +1,14 @@
-FROM archlinux/base
+FROM archlinux:base-devel
 LABEL Description="Archlinux icecream"
 MAINTAINER Aleix Pol Gonzalez <aleixpol@kde.org>
 
 # COPY mirrorlist /etc/pacman.d/
-RUN pacman --noconfirm -Syu binutils gcc clang automake libtool grep lzo base-devel docbook2x
+RUN pacman --noconfirm -Syu clang lzo docbook2x
 RUN useradd pol; mkdir /home/pol; chown pol /home/pol -R
 USER pol
 RUN mkdir -p ~/pkg && cd ~/pkg && curl https://aur.archlinux.org/cgit/aur.git/snapshot/icecream.tar.gz > icecream.tar.gz && tar xvf icecream.tar.gz && cd icecream && makepkg -s
 USER root
-RUN pacman --noconfirm -U /home/pol/pkg/icecream/icecream-*.pkg.tar.xz
+RUN pacman --noconfirm -U /home/pol/pkg/icecream/icecream-*.pkg.*
 
 # Run icecc daemon in verbose mode
 ENTRYPOINT ["/usr/lib/icecream/sbin/iceccd", "-u", "icecream", "-v"]
